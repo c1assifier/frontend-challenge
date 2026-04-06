@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react'
 
 import { fetchCats } from '@/entities/cat/api'
 import type { Cat } from '@/entities/cat/types'
+import { CatCard } from '@/entities/cat/ui/CatCard'
 import '@/pages/cats/CatsPage.css'
+import { NavTabs } from '@/shared/ui/NavTabs'
+
+const TABS = [
+  { label: 'Все котики', active: true },
+  { label: 'Любимые котики', active: false },
+]
 
 export function CatsPage() {
   const [cats, setCats] = useState<Cat[]>([])
@@ -15,18 +22,11 @@ export function CatsPage() {
     const loadCats = async () => {
       try {
         const nextCats = await fetchCats()
-
-        if (isMounted) {
-          setCats(nextCats)
-        }
+        if (isMounted) setCats(nextCats)
       } catch {
-        if (isMounted) {
-          setError('Не удалось загрузить котиков')
-        }
+        if (isMounted) setError('Не удалось загрузить котиков')
       } finally {
-        if (isMounted) {
-          setIsLoading(false)
-        }
+        if (isMounted) setIsLoading(false)
       }
     }
 
@@ -38,25 +38,19 @@ export function CatsPage() {
   }, [])
 
   return (
-    <main className="cats-page">
-      <div className="cats-page__content">
-        <header className="cats-page__header">
-          <h1 className="cats-page__title">Котики</h1>
-        </header>
-
+    <div className="cats-page">
+      <NavTabs tabs={TABS} />
+      <main className="cats-page__content">
         {isLoading ? <p className="cats-page__status">Загрузка...</p> : null}
         {error ? <p className="cats-page__status">{error}</p> : null}
-
         {!isLoading && !error ? (
           <section className="cats-page__grid" aria-label="Список котиков">
             {cats.map((cat) => (
-              <article key={cat.id} className="cats-page__card">
-                <img className="cats-page__image" src={cat.url} alt="Котик" loading="lazy" />
-              </article>
+              <CatCard key={cat.id} src={cat.url} />
             ))}
           </section>
         ) : null}
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }

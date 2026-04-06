@@ -30,5 +30,3 @@
 - React
 - TypeScript
 - Vite
-
----
