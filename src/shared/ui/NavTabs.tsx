@@ -7,9 +7,10 @@ export interface NavTab {
 
 interface NavTabsProps {
   tabs: NavTab[]
+  onTabChange?: (label: string) => void
 }
 
-export function NavTabs({ tabs }: NavTabsProps) {
+export function NavTabs({ tabs, onTabChange }: NavTabsProps) {
   return (
     <nav className="nav-tabs">
       {tabs.map((tab) => (
@@ -17,6 +18,7 @@ export function NavTabs({ tabs }: NavTabsProps) {
           key={tab.label}
           type="button"
           className={`nav-tabs__tab${tab.active ? ' nav-tabs__tab--active' : ''}`}
+          onClick={() => onTabChange?.(tab.label)}
         >
           {tab.label}
         </button>

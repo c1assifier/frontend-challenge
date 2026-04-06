@@ -69,15 +69,21 @@
     opacity 0.15s;
 }
 
+.cat-card__heart-icon--outline {
+  color: #e91e63;
+}
+
 .cat-card__heart-icon--filled {
   opacity: 0;
   color: #e91e63;
 }
 
-.cat-card__heart:hover .cat-card__heart-icon--outline {
+.cat-card__heart:hover .cat-card__heart-icon--outline,
+.cat-card__heart--active .cat-card__heart-icon--outline {
   opacity: 0;
 }
 
-.cat-card__heart:hover .cat-card__heart-icon--filled {
+.cat-card__heart:hover .cat-card__heart-icon--filled,
+.cat-card__heart--active .cat-card__heart-icon--filled {
   opacity: 1;
 }
