@@ -1,0 +1,63 @@
+.cats-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #eef4ff;
+}
+
+.cats-page__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cats-page__header {
+  margin-bottom: 24px;
+}
+
+.cats-page__title {
+  margin: 0 0 8px;
+  font-size: 36px;
+  line-height: 1.1;
+  color: #1f2937;
+}
+
+.cats-page__status {
+  margin: 0;
+  color: #374151;
+}
+
+.cats-page__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cats-page__card {
+  overflow: hidden;
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.cats-page__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .cats-page {
+    padding: 24px 16px;
+  }
+
+  .cats-page__title {
+    font-size: 28px;
+  }
+
+  .cats-page__card {
+    max-width: none;
+  }
+}
